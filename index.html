@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FastSigns | OptiMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/kru1fmm.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: transparent;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .navbar.scrolled {
+      background-color: #07074E;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar.scrolled::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #c81229, #5e0b0b);
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .hero-section {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+.form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 60px; /* adjust this to how far from the left you want it */
+  transform: translateY(-50%);
+  width: 400px;
+  max-width: 90%;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+
+
+    .form-wrapper iframe {
+      width: 100%;
+      height: 550px;
+      border: none;
+    }
+
+    .hero-text {
+      background-color: #07074E;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-family: 'neue-haas-grotesk-display', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .illustration {
+      max-width: 50%;
+      height: auto;
+      margin-bottom: 10px;
+      padding: 20px;
+    }
+
+    .layer-labels {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .layer-labels p {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+      }
+
+      .hero-video,
+      .form-wrapper {
+        flex: 1 1 100%;
+        height: auto;
+      }
+    }
+
+    .selling-points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .selling-point {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 30px 20px;
+      text-align: center;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .selling-point img {
+      height: 72px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .selling-point h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .selling-point p {
+      font-size: 0.95rem;
+      color: #e2e2e2;
+      line-height: 1.5;
+    }
+
+    .selling-point:hover img {
+      transform: scale(1.08);
+    }
+
+    .slide-in-left {
+      transform: translateX(-40px);
+    }
+
+    .slide-in-right {
+      transform: translateX(40px);
+    }
+
+    .solo-slide-in {
+      transform: translateY(40px);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .slide-in-left.show,
+    .slide-in-right.show,
+    .solo-slide-in.show {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+  .form-wrapper {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 90%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin: 20px auto 0 auto;
+  }
+
+      .form-wrapper iframe {
+        height: 600px;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .hero-video {
+        width: 100%;
+        height: auto;
+      }
+
+      .navbar {
+        position: relative;
+        background-color: #07074E;
+        box-shadow: none;
+      }
+
+      .hero-video {
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-video video {
+        width: 100%;
+        height: 80vh;
+        object-fit: cover;
+      }
+
+      .logo img {
+        height: 28px;
+      }
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    .cta-button {
+      background-color: #ffffff;
+      color: #07074E;
+      padding: 10px 24px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.4s ease, transform 0.2s ease;
+      margin-right: 50px;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(90deg, #c81229, #5e0b0b);
+      color: white;
+      transform: scale(1.03);
+    }
+
+    .bullet-list {
+      padding-left: 1.2rem;
+      margin-top: 16px;
+      margin-bottom: 0;
+      list-style-type: disc;
+      color: #333;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .bullet-list li {
+      margin-bottom: 10px;
+    }
+    
+    @media (min-width: 769px) and (max-width: 1200px) {
+
+
+  .hero-section {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hero-video {
+    height: auto;
+  }
+
+  .hero-video video {
+    height: 70vh;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <img src="https://odoo.optimacompanies.com/document/share/290/0eb6a3bb-f826-4bff-a82e-1436adcb0527" alt="OptiMA x FASTSIGNS Logo" />
+    </div>
+    <a href="#top" class="cta-button">Contact Us</a>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-video">
+      <video autoplay muted playsinline loop controls>
+        <source src="https://odoo.optimacompanies.com/document/share/278/f693d8c9-f90d-4548-8371-f296dc987b3a" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="form-wrapper">
+      <iframe src="https://odoo.optimacompanies.com/short-form" loading="lazy" title="Contact Form"></iframe>
+    </div>
+  </section>
+
+  <section id="problem-solution" style="background-color: #F1F5F9; padding: 80px 20px; font-family: 'Montserrat', sans-serif;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 style="text-align: center; color: #07074E; font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 2.4rem; margin-bottom: 60px;">
+        The Problem We Solve
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
+
+        <!-- Old Way -->
+        <div style="background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); border-left: 6px solid #c81229;">
+          <img src="https://odoo.optimacompanies.com/document/share/294/2754ea5d-c163-4baa-bb86-84205ebc1813" alt="Old Way Visual" style="width: 100%; border-radius: 8px; margin-bottom: 20px;" />
+          <h3 style="margin-top: 0;">The Old Way &#10060;</h3>
+          <ul class="bullet-list">
+            <li>Flimsy, imported whiteboards not built for sign shops</li>
+            <li>Vinyl applied manually and trimmed with an X-Acto</li>
+            <li>Risk of bubbles, crooked cuts, and wasted materials</li>
+            <li>Slower, inefficient production workflow</li>
+            <li>Plastic corners and low-grade mounting hardware</li>
+            <li>Inconsistent results and lower customer satisfaction</li>
+          </ul>
+        </div>
+
+        <!-- OptiMA Way -->
+        <div style="background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); border-left: 6px solid #07074E;">
+          <img src="https://odoo.optimacompanies.com/document/share/293/5829f464-35bb-4b19-b63a-4948766483dd" alt="OptiMA Way Visual" style="width: 100%; border-radius: 8px; margin-bottom: 20px;" />
+          <h3 style="margin-top: 0;">The OptiMA Way &#9989;</h3>
+          <ul class="bullet-list">
+            <li>Professional-grade, American-made steel surface</li>
+            <li>Flat and flawless for RollsRoller or flatbed application</li>
+            <li>Removable aluminum trim and tray for easy install</li>
+            <li>Zero trimming, faster turnaround</li>
+            <li>Cleaner results with fewer errors</li>
+            <li>Premium quality at the same cost</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero-text">
+    <h1>What You Get</h1>
+    <p>Build on a better foundation with the Optima Dry Erase Blank—designed for sign professionals who demand quality and efficiency.</p>
+    <img class="illustration" src="https://odoo.optimacompanies.com/document/share/292/f99fe5a1-d35f-4342-abe8-a328f0e72abf" alt="Board Layer Illustration">
+    <div class="layer-labels">
+      <p><strong>1. YOUR</strong> Custom Printed Dry Erase Vinyl</p>
+      <p><strong>2. OUR</strong> Magnetic Receptive Substrate</p>
+      <p><strong>3. OUR</strong> Removeable Aluminum Trim & Tray</p>
+    </div>
+  </section>
+
+<section class="testimonial-section">
+  <div class="testimonial-container">
+    <blockquote class="testimonial-quote">
+     “Thank you for your excellent product AND
+customer service. This was the fourth whiteboard that
+I bought for the school and I would definitely use
+the company again.”
+    </blockquote>
+    <p class="testimonial-attribution"> -Vera (Real OptiMA Customer)</p>
+  </div>
+</section>
+
+
+  <style>
+.testimonial-section {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 100px 20px;
+  background-image: url('https://images.unsplash.com/photo-1562884328-39da45501a9c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  overflow: hidden;
+  text-align: center;
+  z-index: 1;
+}
+
+.testimonial-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(241, 245, 249, 0.9); /* light overlay for contrast */
+  z-index: 1;
+}
+
+.testimonial-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonial-quote {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.testimonial-attribution {
+  font-weight: bold;
+  color: #c81229;
+  font-size: 1rem;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    </style>
+
+  <section id="selling-points" style="background-color: #07074E; color: white; padding: 80px 20px;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <h2 style="font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 2.4rem; text-align: center; margin-bottom: 60px;">
+        Why Build on an OptiMA Blank?
+      </h2>
+      <div class="selling-points-grid">
+        <div class="selling-point slide-in-left">
+          <img src="https://odoo.optimacompanies.com/document/share/282/fcca5697-968f-4b85-9bc4-43bfd08cc8e2" alt="Competitive Pricing" />
+          <h3>Premium Quality, Competitive Price</h3>
+          <p>US-made, pro-grade substrate for the price of imported boards you’re still modifying.</p>
+        </div>
+        <div class="selling-point slide-in-right">
+          <img src="https://odoo.optimacompanies.com/document/share/283/b8961b40-5d1e-4dfb-a312-ffb5285617b1" alt="Workflow" />
+          <h3>Built for Your Workflow</h3>
+          <p>Removable trim and tray make RollsRoller application fast and clean — no hand-trimming.</p>
+        </div>
+        <div class="selling-point slide-in-left">
+          <img src="https://odoo.optimacompanies.com/document/share/284/7b00177b-311d-4664-8a60-049973056c1c" alt="American Made" />
+          <h3>Superior American-Made Construction</h3>
+          <p>Built in-house with 26-gauge steel on a rigid backer. Magnetic, warp-free, and tariff-free.</p>
+        </div>
+        <div class="selling-point slide-in-right">
+          <img src="https://odoo.optimacompanies.com/document/share/285/4fe26730-2794-4ec7-853b-23ca65f9e90b" alt="Finishing" />
+          <h3>Professional Finishing</h3>
+          <p>One-piece aluminum trim with rounded corners—better than plastic or raw-cut edges.</p>
+        </div>
+        <div class="selling-point slide-in-left">
+          <img src="https://odoo.optimacompanies.com/document/share/286/d43f5dbd-a1a4-43ea-8f2d-a44361ffbbe5" alt="Install" />
+          <h3>Faster, Smarter Installation</h3>
+          <p>Tray mounts to wall. Board drops in. L-clips at the top. Quick, clean, done.</p>
+        </div>
+        <div class="selling-point slide-in-right">
+          <img src="https://odoo.optimacompanies.com/document/share/287/caa51b6d-1a9d-4169-a257-b17c54b2daad" alt="Solution" />
+          <h3>The Complete Solution</h3>
+          <p>Pair with our dry erase laminate and your printed vinyl. Ready to go.</p>
+        </div>
+      </div>
+      <div class="selling-point solo-slide-in">
+        <img src="https://odoo.optimacompanies.com/document/share/288/65d59f37-1d0e-4955-b782-ff2a766150bc" alt="Turnaround" />
+        <h3>Fast Turnaround</h3>
+        <p>Ships in 1–2 days from our facility.</p>
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 4px; background: linear-gradient(90deg, #c81229, #5e0b0b);"></div>
+  <footer style="background-color: #07074E; color: white; padding: 40px 20px; font-size: 0.95rem; line-height: 1.6;">
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px;">
+      <div>
+        <h3 style="font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 1.2rem; margin-bottom: 10px;">FIND US</h3>
+        <p><strong>Address</strong><br>
+          OptiMA® Inc.<br>
+          220 Cherry Street<br>
+          Shrewsbury, MA 01545</p>
+        <p>Phone: 508-842-6200<br>
+          Toll Free: 866-366-1500<br>
+          Sales Office Fax: 508-393-6688<br>
+          Accounting & Order Fax: 508-393-8376</p>
+        <p>Email: Info@OptimaCompanies.com</p>
+        <p><strong>Hours</strong><br>
+          Monday—Friday: 8:00AM–5:00PM EST</p>
+      </div>
+      <div>
+        <h3 style="font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 1.2rem; margin-bottom: 10px;">OptiMA in the Press</h3>
+        <p>Capabilities Statement<br>
+          Terms & Conditions</p>
+        <h3 style="font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 1.2rem; margin-bottom: 10px;">ABOUT OPTIMA® DRY ERASE PRODUCTS</h3>
+        <p>OptiMA® is an innovative whiteboard manufacturer that produces high quality, competitively priced dry erase products that satisfy the communication needs of its customers. How may we be of service to you?</p>
+      </div>
+      <div>
+        <h3 style="font-family: 'neue-haas-grotesk-display', sans-serif; font-size: 1.2rem; margin-bottom: 10px;">DEALER PROGRAM</h3>
+        <p>Become an OptiMA® brand dealer, learn more and apply now.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+    const slideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          slideObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+    document.querySelectorAll('.slide-in-left, .slide-in-right, .solo-slide-in').forEach(el => {
+      slideObserver.observe(el);
+    });
+  </script>
+</body>
+
+</html>
