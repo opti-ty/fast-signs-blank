@@ -317,8 +317,26 @@
   }
 }
 
+
+.hero-section { position:relative; display:flex; width:100%; height:100vh; overflow:hidden; }
+.hero-video { position:relative; width:100%; height:100%; z-index:1; }
+.vimeo-cover {
+  position:absolute; top:50%; left:50%;
+  /* 16:9 cover trick: */
+  width:100vw; height:56.25vw;             /* 9/16 = 0.5625 */
+  min-height:100vh; min-width:177.78vh;     /* 16/9 = 1.7778 */
+  transform:translate(-50%, -50%);
+  border:0;
+}
+.form-wrapper { z-index:10; }
+
+
   </style>
 </head>
+
+
+
+
 
 <body>
   <nav class="navbar" id="navbar">
@@ -329,12 +347,20 @@
   </nav>
 
   <section class="hero-section">
-    <div class="hero-video">
-      <video autoplay muted playsinline loop controls>
-        <source src="https://odoo.optimacompanies.com/document/share/278/f693d8c9-f90d-4548-8371-f296dc987b3a" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
+<div class="hero-video">
+  <iframe
+    src="https://player.vimeo.com/video/1106510833?autoplay=1&muted=1&loop=1&controls=1&title=0&byline=0&portrait=0"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    title="FastSigns Hero"
+    loading="lazy" class="vimeo-cover">
+  </iframe>
+</div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+
     <div class="form-wrapper">
       <iframe src="https://odoo.optimacompanies.com/short-form" loading="lazy" title="Contact Form"></iframe>
     </div>
