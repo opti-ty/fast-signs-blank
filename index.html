@@ -331,6 +331,50 @@
 .form-wrapper { z-index:10; }
 
 
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* let the hero grow */
+  .hero-section {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* drop absolute cover, make the iframe block-level, full-width */
+  .vimeo-cover,
+  .hero-video iframe {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    min-width: auto !important;
+    min-height: auto !important;
+  }
+
+  /* ensure container expands to its contents */
+  .hero-video {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-video iframe {
+    width: 100%         !important;
+    aspect-ratio: 16/9  !important;
+    height: auto        !important;
+    display: block      !important;
+  }
+}
+
+
   </style>
 </head>
 
