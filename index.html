@@ -385,10 +385,11 @@
         document.documentElement.scrollHeight,
         document.body ? document.body.scrollHeight : 0
       );
-      window.parent.postMessage({ type: 'OPTIMA_IFRAME_HEIGHT', height: h + 20 }, '*');
+      // small buffer for async fonts/images
+      window.parent.postMessage({ type: 'OPTIMA_IFRAME_HEIGHT', height: h + 24 }, '*');
     }
-    ['load','resize'].forEach(function(e){ window.addEventListener(e, sendHeight); });
-    var i=0, t=setInterval(function(){ sendHeight(); if(++i>10) clearInterval(t); }, 700);
+    ['load','resize','orientationchange'].forEach(function(e){ window.addEventListener(e, sendHeight); });
+    var i=0, t=setInterval(function(){ sendHeight(); if(++i>12) clearInterval(t); }, 600);
     sendHeight();
   })();
 </script>
