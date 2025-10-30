@@ -378,6 +378,20 @@
   </style>
 </head>
 
+<script>
+  (function () {
+    function sendHeight() {
+      var h = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      window.parent.postMessage({ type: 'OPTIMA_IFRAME_HEIGHT', height: h + 20 }, '*');
+    }
+    ['load','resize'].forEach(function(e){ window.addEventListener(e, sendHeight); });
+    var i=0, t=setInterval(function(){ sendHeight(); if(++i>10) clearInterval(t); }, 700);
+    sendHeight();
+  })();
+</script>
 
 
 
